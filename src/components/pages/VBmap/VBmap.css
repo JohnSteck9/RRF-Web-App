@@ -7,31 +7,33 @@
 }
 .file-box {
     position: relative;
-    /*background: grey;*/
     border: 1px solid rgba(197,207,210,0.5);
     border-radius: 5px;
     margin-left: 15px;
     margin-top: 12px;
     margin-bottom: 12px;
-    overflow: hidden;
     cursor: pointer;
     transition: .2s linear;
+    text-align: left;
+    display: inline-block;
+    /*overflow: hidden;*/
 }
 .file-box:hover {
     background-color: rgba(197,207,210,0.5)
 }
 .file-name {
-    text-align: center;
-    margin: 0 auto;
-    /*padding-right: 15px;*/
-    /*margin-right: 15px;*/
-    padding-bottom: 10px;
+    padding-top: 5px;
+    height: 50%;
+    display: inline-block;
+    vertical-align: middle;
 }
-.exel-img {
-    height: 64px;
+.file-img {
+    /*height: 64px;*/
     width: 64px;
     cursor: pointer;
     z-index: 10;
+    vertical-align: middle;
+    /*display: inline-block;*/
 }
 .close-img {
     position: absolute;
@@ -49,4 +51,4 @@
     top: 0;
     right: 0;
 }
-.file-text {}
+

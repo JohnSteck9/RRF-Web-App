@@ -1,7 +1,7 @@
 import './App.css';
 import {Button, Col, Row} from "react-bootstrap";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import About from "../components/pages/About";
+import VBmap from "../components/pages/VBmap/VBmap";
 // console.log(process.env)
 
 
@@ -17,13 +17,13 @@ function App() {
                     {/*    </li>*/}
                     {/*    <li>*/}
                     {/*        <Link exect to="/about" component={About}>About </Link>*/}
-                    {/*        /!*<About/>*!/*/}
+
                     {/*    </li>*/}
                     {/*    <li>*/}
                     {/*        <Link to="/dashboard">Dashboard</Link>*/}
                     {/*    </li>*/}
                     {/*</ul>*/}
-                    <About/>
+                    <VBmap/>
                     <hr/>
 
                     <Switch>

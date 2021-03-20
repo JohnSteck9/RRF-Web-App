@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {storage} from '../../firebase';
+import {storage} from '../../../firebase';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {storageGetMetadata, loadFiles} from './storageScripts.js';
-import './About.css'
-import FileCard from "./FileCard";
+import './VBmap.css'
+import VBmapFile from "./VBmapFile";
 
 
 
@@ -11,7 +10,7 @@ import FileCard from "./FileCard";
 
 function About() {
     const [filesList, setFilesList] = useState([]);
-    const [file, setFile] = useState(null);
+    const [filename, setFile] = useState(null);
     // let filesData = []
     // let storageRef = storage.ref(FOLDER_NAME);
 
@@ -22,21 +21,20 @@ function About() {
         }
     };
     const handleUpload = () => {
-        const uploadTask = storage.ref(`docs/${file.name}`).put(file);
+        const uploadTask = storage.ref(`docs/${filename.name}`).put(filename);
         uploadTask.on("state_changed", snapshot => {
             }, error => {
                 console.log(error)
             },
             () => {
-                storage.ref("docs").child(file.name).getDownloadURL().then(url => {
+                storage.ref("docs").child(filename.name).getDownloadURL().then(url => {
                     // console.log(url)
-                    setFilesList(filesList => [...filesList, {'name': file.name}])
+                    setFilesList(filesList => [...filesList, {'name': filename.name}])
                 });
             })
     };
 
-
-    // console.log("image:", file)
+    // console.log("image:", filename)
     useEffect(() => {
         // let filesData = []
         const FOLDER_NAME = 'docs'
@@ -59,7 +57,6 @@ function About() {
                     .catch((error) => {
                         console.log(error)
                     });
-                // storageGetMetadata(imageRef.name)
                 displayImage(imageRef, fileData)
                 // console.log('222')
             });
@@ -72,42 +69,21 @@ function About() {
                 fileData['url'] = url;
                 // filesData.push(fileData)
                 // console.log('333')
-                console.log(fileData)
+                console.log(fileData + 'fileData')
                 setFilesList(filesList => [...filesList, fileData])
                 // setCount(fileList.push()[filesData]);
                 // setCount([filesData]);
                 // count.forEach(element => console.log(element));
-                console.log(filesList + '88')
+                console.log(filesList + 'filesList')
             }).catch(function (error) {
                 console.log(error)
             });
         }
-
-        // console.log(loadFiles())
-        // console.log(filesData)
-        // setCount(count => [...count, filesData]);
-        // console.log(count, '22')
     }, []);
 
-    function qwer(data) {
-        try {
-            data[0].forEach(element => console.log(element.name))
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
-    function deleteFile(id, filename) {
-        // Create a reference to the file to delete
-        let desertRef = storage.child(`images/desert.jpg`);
-        // Delete the file
-        desertRef.delete().then(() => {
-            // File deleted successfully
-        }).catch((error) => {
-            console.log(error)
-        });
-        alert("close")
-    }
+
+
 
     return (
         <Container>
@@ -126,13 +102,13 @@ function About() {
                 </Col>
             </Row>
             <Row className="justify-content-evenly ">
-                {filesList.map(({name, timeCreated, updated, url}) => (
-                    <FileCard
-                        name={name}
+                {filesList.map(({name, timeCreated, updated, url}, idx) => (
+                    <VBmapFile
+                        filename={name}
                         timeCreated={timeCreated}
                         updated={updated}
                         url={url}
-                        key={name}
+                        key={`${name}_${idx}`}
                     />
                 ))}
             </Row>
