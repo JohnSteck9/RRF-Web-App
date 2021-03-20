@@ -1,23 +1,39 @@
 import './App.css';
 import {Button, Col, Row} from "react-bootstrap";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import About from "../components/pages/About";
+// console.log(process.env)
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-<Row>
-  <Col>
 
-  </Col>
-  <Col>
-    <h2>qwerty1</h2>
-    <Button variant="primary">Primary</Button>
-  </Col>
-</Row>
+    return (
+        <div className="App">
+            <Router>
+                <div>
+                    {/*<ul>*/}
+                    {/*    <li>*/}
+                    {/*        <Link to="/">Home </Link>*/}
+                    {/*    </li>*/}
+                    {/*    <li>*/}
+                    {/*        <Link exect to="/about" component={About}>About </Link>*/}
+                    {/*        /!*<About/>*!/*/}
+                    {/*    </li>*/}
+                    {/*    <li>*/}
+                    {/*        <Link to="/dashboard">Dashboard</Link>*/}
+                    {/*    </li>*/}
+                    {/*</ul>*/}
+                    <About/>
+                    <hr/>
 
-      </header>
-    </div>
-  );
+                    <Switch>
+                        <Route exact path="/" component=""/>
+
+                    </Switch>
+                </div>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
